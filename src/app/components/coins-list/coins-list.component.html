@@ -1,0 +1,80 @@
+<!-- Spinner -->
+
+<div class="spinner-border text-info" role="status" [hidden]="hideSppiner"></div>
+
+<!-- List header items -->
+
+<div class="text-center">
+  <input class="mr-1" #searchTxt type="text" aria-describedby="basic-addon1" [(ngModel)]="ii">
+  <button class="btn m-1 borde" type="button" (click)="search(searchTxt.value)"
+    style="background-color:  rgba(255, 217, 0, 0.644);">Search</button>
+  <button class="btn btn-danger mr-1" *ngIf="onSearch" (click)="backToList()">Back to list</button>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" *ngIf="reportList.length > 4">
+    Get Reports List</button>
+</div>
+<div class="text-center" *ngIf="noResult" style="color: rgb(238, 197, 95);">
+  <h4>No result mach your term!</h4>
+  <h3>Please try again.</h3>
+</div>
+
+<!-- The Modal -->
+
+<!-- Modal meta data -->
+<div id="modal">
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h1 class="modal-title center">Report List</h1>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div *ngFor="let report of reportList">
+            <div class="card-body">
+              <div class="row">
+                <h5 class="card-title col">{{report.symbol}}</h5>
+                <input #checkbox id="checkbox" class="form-check-input col" type="checkbox" checked
+                  (click)="remove(report)" />
+              </div>
+              <p class="card-text">{{report.name}}</p>
+              <hr>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Individual card display -->
+<app-card [coins]="coins" (EE)="updateFromChild($event)"></app-card>
+
+<div>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>

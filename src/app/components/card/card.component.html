@@ -1,0 +1,66 @@
+<div class="row">
+  <div
+    *ngFor="let coin of coins; let idx = index"
+    class="card col-4 p-2"
+    [hidden]="coin.hideCard"
+  >
+    <div class="card-body">
+      <div class="row">
+        <h5 class="card-title col">{{ coin.symbol }}</h5>
+
+        <div class="custom-control custom-switch">
+          <input
+            type="checkbox"
+            class="custom-control-input col"
+            id="{{ idx }}"
+            #inp
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="choose 5 crypto coins and get report list"
+            (click)="addToReportList(inp, coin)"
+            [disabled]="coin.disabled"
+            [checked]="coin.checked"
+          />
+          <label class="custom-control-label" for="{{ idx }}"></label>
+        </div>
+      </div>
+      <p class="card-text">{{ coin.name }}</p>
+
+      <button
+        class="btn btn-primary"
+        type="button"
+        data-toggle="collapse"
+        [attr.data-target]="'#id' + idx"
+        (click)="getByCoin(coin)"
+      >
+        More info
+      </button>
+
+      <div class="collapse mt-2" id="id{{ idx }}">
+        <div class="card card-body">
+          <img
+            class="center"
+            [src]="coin.coinImg"
+            alt=""
+            style="width: 100px"
+          />
+          USD:
+          <div class="row container mt-2" style="font-size: 20px">
+            <p [innerText]="coin.exchangeDollar"></p>
+            <p>&nbsp;&nbsp;&nbsp;&#36;</p>
+          </div>
+          EUR:
+          <div class="row container" style="font-size: 20px">
+            <p [innerText]="coin.exchangeEuro"></p>
+            <p>&nbsp;&nbsp;&nbsp;&euro;</p>
+          </div>
+          ILS:
+          <div class="row container" style="font-size: 20px">
+            <p [innerText]="coin.exchangeShekel"></p>
+            <p>&nbsp;&nbsp;&nbsp;&#8362;</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
