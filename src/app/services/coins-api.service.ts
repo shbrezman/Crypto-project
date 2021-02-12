@@ -15,11 +15,11 @@ export class CoinsApiService{
 
 
 
-  getCoinsList(){
+  getCoinsList(): Observable<object>{
     return this.http.get(this.baseApiPath + 'list');
   }
 
-  getCoinData(id: string){
+  getCoinData(id: string): Observable<object>{
     return this.http.get(this.baseApiPath + id);
   }
 
